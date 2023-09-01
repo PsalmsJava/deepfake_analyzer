@@ -1,0 +1,23 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-analyze {
+    margin-top: 20px;
+}
+
+.canvas {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    background-color: #f8f9fa;
+}

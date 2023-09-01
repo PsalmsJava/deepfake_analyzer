@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deepfake Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Deepfake Detection</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image1">Upload Image 1:</label>
+                <input type="file" class="form-control-file" name="image1" id="image1" accept=".jpg, .jpeg, .png" required>
+                <canvas id="canvas1" class="canvas"></canvas>
+            </div>
+            <div class="form-group">
+                <label for="image2">Upload Image 2:</label>
+                <input type="file" class="form-control-file" name="image2" id="image2" accept=".jpg, .jpeg, .png" required>
+                <canvas id="canvas2" class="canvas"></canvas>
+            </div>
+            <button type="submit" class="btn btn-primary btn-analyze">Analyze</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for displaying image previews on canvas
+        function readURL(input, canvasId) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var canvas = document.getElementById(canvasId);
+                    var ctx = canvas.getContext("2d");
+                    var img = new Image();
+                    img.onload = function() {
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#image1").change(function() {
+            readURL(this, "canvas1");
+        });
+
+        $("#image2").change(function() {
+            readURL(this, "canvas2");
+        });
+    </script>
+</body>
+</html>
